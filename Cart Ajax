@@ -31,3 +31,23 @@ function customAddToCartJS(qty, variantID, lineItem = null) {
 // insert Quantity and Variant ID for your products Selected Variant.
 
 customAddToCartJS(quantity,variantID);
+
+// Function For Deletion of items
+
+function removeFromCartJS(variantID) {
+    var xhr = new XMLHttpRequest();
+    var url = "/cart/change.js";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var parsedState = JSON.parse(xhr.responseText);
+            if (document.querySelector(".ajax-cart-disabled")) window.location = "/cart";
+            console.log("strawberry Item removed")
+            console.log(parsedState)
+
+        }
+    };
+    var data = JSON.stringify({ "quantity": 0, "id": variantID, });
+    xhr.send(data);
+}
