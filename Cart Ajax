@@ -27,7 +27,7 @@ function customAddToCartJS(qty, variantID, lineItem = null) {
     xhr.send(data);
 } 
 
-// Call on submit or on click
+// Call on submit or on Events
 // insert Quantity and Variant ID for your products Selected Variant.
 
 customAddToCartJS(quantity,variantID);
