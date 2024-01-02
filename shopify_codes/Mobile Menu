@@ -1,6 +1,8 @@
 // Snippet Code
 <!-- Snippet Name: MObile-nav.liquid-->
 
+<!-- Snippet Name: Mobile-nav.liquid -->
+
 <style>
   .mobile_nav_wrapper{
     display: flex;
@@ -105,6 +107,14 @@
     align-items: center;
     justify-content: center;
   }
+  .shoplook_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
   
   @media screen and (min-width:991px){
     .mobile_nav_wrapper{
@@ -137,11 +147,11 @@
         <details class="mobile_nav_items">
           <summary>
             {{ block.settings.menu_item_label }}
-      <div class="custom_menu_arrow">
+            <div class="custom_menu_arrow">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path fill="currentColor" d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"></path>
             </svg>
-      </div>
+      </div>      
           </summary>
           <div class="details_inner_wrapper">
             <div class="mobile_nav_menu_menu">
@@ -198,6 +208,49 @@
             {% endif %}
           </div>
         </details>
+    {% when 'shop_the_look_mobile' %}
+      <details class="mobile_nav_items">
+        <summary>
+          {{ block.settings.shoplook_menu_item_text }}
+          <div class="custom_menu_arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="currentColor" d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"></path>
+            </svg>
+          </div>  
+        </summary>
+        <div class="shoplook_container">
+          {% if block.settings.shoplook_code_first != blank %}
+            <div class="first_shoplook_wrapper shoplook_wrappers">
+              {{ block.settings.shoplook_code_first }} 
+            </div>
+          {% endif %}
+          {% if block.settings.shoplook_code_second %}
+            <div class="first_shoplook_wrapper shoplook_wrappers">
+              {{ block.settings.shoplook_code_second }}            
+            </div>
+          {% endif %}  
+          {% if block.settings.shoplook_code_third %}
+            <div class="first_shoplook_wrapper shoplook_wrappers">
+              {{ block.settings.shoplook_code_third }}            
+            </div>
+          {% endif %}  
+          {% if block.settings.shoplook_code_fourth %}
+            <div class="first_shoplook_wrapper shoplook_wrappers">
+              {{ block.settings.shoplook_code_fourth }}            
+            </div>
+          {% endif %}
+          {% if block.settings.shoplook_code_fifth %}
+            <div class="first_shoplook_wrapper shoplook_wrappers">
+              {{ block.settings.shoplook_code_fifth }}            
+            </div>
+          {% endif %}
+          {% if block.settings.shoplook_code_sixth %}
+            <div class="first_shoplook_wrapper shoplook_wrappers">
+              {{ block.settings.shoplook_code_sixth }}
+            </div>
+          {% endif  %}
+        </div> 
+      </details>  
     {% endcase %}
   {% endfor %}
 </div>
