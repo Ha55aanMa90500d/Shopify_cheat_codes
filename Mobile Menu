@@ -1,0 +1,203 @@
+// Snippet Code
+<!-- Snippet Name: MObile-nav.liquid-->
+
+<style>
+  .mobile_nav_wrapper{
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    flex-direction:column;
+    position: fixed;
+    max-width:385px;
+    width: 100%;
+    height:100vh;
+    top:0%;
+    left: -100%;
+    z-index: 999;
+    background-color: white;
+    padding: 0px;
+    overflow-y: scroll;
+    transition:.5s ease-in all;
+  }
+  .custom_mobile_nav_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #f6f6f6;
+    padding: 12px 15px;
+  }
+  .custom_mobile_nav_top p, .custom_mobile_nav_close_btn
+  {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #232323;
+    line-height: 22px;
+    padding:0;
+    margin:0;
+  }
+  .details_inner_wrapper{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    position: relative;
+    width: 100%;
+    left: 0;
+    z-index: 3;
+    background-color: white;
+    padding: 0 0 10px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .details_inner_wrapper::-webkit-scrollbar{
+    width:1px;
+  }
+  .details_inner_wrapper::-webkit-scrollbar-track{
+    background:transparent;
+  }
+  .mobile_nav_menu_menu,.mobile_nav_items{
+    width:100%;
+  }
+  .mobile_nav_menu_menu details{
+    text-align:left;
+  }
+  .mobile_nav_menu_menu details summary,.menu-link summary, .mobile_nav_items summary{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px 15px;
+    line-height: 1;
+    text-transform:uppercase;
+  }
+  .mobile_nav_menu_menu summary {
+      padding: 8px 15px 8px 20px!important;
+  }
+  .mobile_nav_menu_menu details summary svg,.menu-link summary svg, .mobile_nav_items summary svg,
+  .mobile_nav_menu_image_wrapper{
+    width: 100%;
+    text-align: left;
+  }
+  .mobile_nav_menu_image_wrapper a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .menu-dropdown-child a{
+    font-size: 16px;
+    color: #13394b;
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+    padding: 0px 0 5px 30px;
+    font-weight: 500;
+  }
+  .menu-dropdown-child a:hover {
+    color: #AC9B6F;
+    transition: .2s ease-in all;
+  }
+  .custom_menu_arrow{
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media screen and (min-width:991px){
+    .mobile_nav_wrapper{
+      display:none;
+    }
+  }
+  @media screen and (max-width:768px){
+    .details_inner_wrapper{
+      flex-direction:column;
+    }
+    .mobile_nav_menu_image_wrapper{
+      width:100%;
+      padding:8px 20px;
+    }
+  }
+
+  .site-header .navigation{
+    display:block !important;
+  }
+</style>
+
+<div id="sid-{{ section.id }}" class="mobile_nav_wrapper">
+  <div class="custom_mobile_nav_top">
+    <p>Menu</p>
+    <button class="custom_mobile_nav_close_btn">&#x2715</button>
+  </div>
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'mobile_nav_menu_item' %}
+        <details class="mobile_nav_items">
+          <summary>
+            {{ block.settings.menu_item_label }}
+      <div class="custom_menu_arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="currentColor" d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"></path>
+            </svg>
+      </div>
+          </summary>
+          <div class="details_inner_wrapper">
+            <div class="mobile_nav_menu_menu">
+              {% for link in block.settings.mobile_nav_menu.links %}
+                <details>
+                  <summary>
+                    {{ link.title }}
+                <div class="custom_menu_arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <path fill="currentColor" d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"></path>
+                    </svg>
+                </div>
+                  </summary>
+                  {% if link.links.size > 1 %}
+                    <div class="menu-dropdown-child">
+                      {% for child_link in link.links %}
+                        {% if child_link.links.size > 1 %}
+                          <details class="menu-link">
+                            <summary>
+                              <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                              <div class="custom_menu_arrow">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="currentColor" d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"></path>
+                              </svg>
+                              </div>
+                            </summary>
+                            <div>
+                              <ul class="menu dropdown-grandchild">
+                                {% for grandchild_link in child_link.links %}
+                                  <li class="menu-link">
+                                    <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </details>
+                        {% else %}
+                          <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </details>
+              {% endfor %}
+            </div>
+            {% if block.settings.custom_lookbook_image_code != blank %}
+              {{ block.settings.custom_lookbook_image_code }}
+            {% elsif block.settings.mobile_nav_menu_img != blank %}
+              <div class="mobile_nav_menu_image_wrapper">
+                <a href="{{ block.settings.image_click_redirect_link }}">
+                  <img src="{{ block.settings.mobile_nav_menu_img | img_url:'master' }}" width="100%">
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </details>
+    {% endcase %}
+  {% endfor %}
+</div>
