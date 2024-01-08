@@ -1,0 +1,33 @@
+<!-- Section File Name: custom-google.reviews.liquid -->
+<!-- Section File Name: google reviews -->
+<!-- Section File Name: google reviews -->
+
+<div id="{{ section.id }}">
+  <div class="main_container">
+    <div class="content_wrapper">
+      {{ section.settings.google_account_script }} // get the Script From trustindex.io and paste it into your section Setting
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "google reviews",
+    "settings": [
+      {
+        "type":"html",
+        "id":"google_account_script",
+        "label":"Script for Google Account Review"
+      }
+    ],
+    "presets":[{
+      "name":"google reviews"
+    }]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
