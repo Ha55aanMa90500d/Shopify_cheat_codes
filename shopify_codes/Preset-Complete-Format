@@ -1,0 +1,10 @@
+"presets": [
+    {
+      "name": "your preset name here",
+      "blocks": [
+        {
+          "type": "your type here"
+        }
+      ]
+    }
+  ]
