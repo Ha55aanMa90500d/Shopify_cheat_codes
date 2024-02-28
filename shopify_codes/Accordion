@@ -1,0 +1,94 @@
+<style>
+      .accordion_heading * {
+        color: black;
+        font-size: 22px;
+        font-weight: 600;
+        padding: 10px 0;
+      }
+      .tab_heading {
+        padding: 12px 24px;
+        border: 1px solid transparent;
+        border-bottom: none;
+      }
+      .tab_heading * {
+        font-size: 18px;
+        color: cadetblue;
+        transition: all 0.2s linear;
+        cursor: pointer;
+      }
+      .tab_heading *:hover {
+        color: gray;
+      }
+      .active__tab {
+        border-color: #e1e1e1 !important;
+      }
+      .active__tab * {
+        color: black !important;
+        font-weight: 600;
+      }
+      .custom_product_accordion .tabs_wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        flex-wrap: wrap;
+        row-gap: 15px;
+        /* padding: 10px 0px; */
+      }
+      .description_wrapper {
+        display: flex;
+        border: 1px solid #e1e1e1;
+        padding: 20px;
+      }
+      .tab_content {
+        display: none;
+      }
+      .tab_content:first-child {
+        display: block;
+      }
+      .accordion_wrapper {
+        padding: 30px 30px;
+        border: 1px solid #e1e3e4;
+        margin-bottom: 30px;
+      }
+      @media only screen and (max-width: 767px) {
+        .accordion_heading * {
+          font-size: 18px;
+        }
+        .tab_heading * {
+          font-size: 14px;
+        }
+      }
+    </style>
+
+    <div class="accordion_wrapper custom_product_accordion">
+      <div class="accordion_heading">Section Heading</div>
+      <div class="tabs_wrapper">
+        <div class="tab_heading active__tab">Tab Heading</div>
+
+        // Add More Tab Heading
+      </div>
+      <div class="description_wrapper">
+        <div class="tab_content">Tab Content</div>
+
+        // Add More Tab Contents
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        let tab_heading = document.querySelectorAll(".tab_heading");
+        let tab_content = document.querySelectorAll(".tab_content");
+        // tab_heading.classList.add('active__tab');
+        tab_heading.forEach((trigger, index) => {
+          trigger.addEventListener("click", () => {
+            tab_content.forEach((ele, ind) => {
+              tab_heading[ind].classList.remove("active__tab");
+              ele.style.display = "none";
+            });
+            trigger.classList.add("active__tab");
+            document.querySelectorAll(".tab_content")[index].style.display =
+              "block";
+          });
+        });
+      });
+    </script>
