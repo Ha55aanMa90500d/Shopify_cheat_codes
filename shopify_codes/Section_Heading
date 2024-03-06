@@ -1,0 +1,119 @@
+//CSS For Section Heading
+  #sid-{{section.id}} .section_heading *{
+    color:{{ section.settings.section_heading_color }};
+    font-size:{{ section.settings.section_heading_font_size }}px;
+    font-weight:{{ section.settings.section_heading_font_weight }};
+    padding-bottom:{{ section.settings.section_heading_padding_bottom }}px;
+    text-align:{{ section.settings.section_heading_text_alignment }};
+    text-transform:{{ section.settings.section_heading_text_transform }};
+  }
+
+  @media only screen and (max-width: 767px){
+    #sid-{{section.id}} .section_heading *{
+      font-size:{{ section.settings.section_heading_font_size_mb }}px;
+    }
+  }
+// CSS End 
+
+// Section Heading Markup
+  <div class="section_heading">{{ section.settings.section_heading }}</div>
+// Markup End
+
+// Section Heading Settings
+  {
+    "type":"header",
+    "content":"Heading Settings"
+  },
+  {
+    "type":"richtext",
+    "id":"section_heading",
+    "label":"heading"
+  },
+  {
+    "type":"color",
+    "id":"section_heading_color",
+    "label":"Heading Color"
+  },
+  {
+    "type":"range",
+    "id":"section_heading_font_size",
+    "label":"Heading Font Size",
+    "min":12,
+    "max":70,
+    "default":56
+  },
+  {
+    "type":"range",
+    "id":"section_heading_font_size_mb",
+    "label":"Heading Font Size Mobile",
+    "min":12,
+    "max":70,
+    "default":32
+  },
+  {
+    "type":"range",
+    "id":"section_heading_font_weight",
+    "label":"Heading Font Weight",
+    "min":100,
+    "max":900,
+    "step":100,
+    "default":600
+  },
+  {
+    "type":"range",
+    "id":"section_heading_padding_bottom",
+    "label":"Heading Padding Bottom",
+    "min":0,
+    "max":100,
+    "step":1,
+    "default":0
+  },
+  {
+    "type": "select",
+    "id": "section_heading_text_alignment",
+    "label": "Heading Text Alignment",
+    "options": [
+      {
+        "value": "left",
+        "label": "Left"
+      },
+      {
+        "value": "center",
+        "label": "Center"
+      },
+      {
+        "value": "right",
+        "label": "Right"
+      },
+      {
+        "value": "justify",
+        "label": "Justify"
+      }
+    ],
+    "default": "left"
+  },
+  {
+    "type": "select",
+    "id": "section_heading_text_transform",
+    "label": "Heading Text Transform",
+    "options": [
+      {
+        "value": "uppercase",
+        "label": "Uppercase"
+      },
+      {
+        "value": "lowercase",
+        "label": "Lowercase"
+      },
+      {
+        "value": "capitalize",
+        "label": "Capitalize"
+      },
+      {
+        "value": "none",
+        "label": "None"
+      }
+    ],
+    "default": "capitalize"
+  }
+// settings End
