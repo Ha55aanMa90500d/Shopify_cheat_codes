@@ -1,0 +1,30 @@
+// Using Javascript
+document.querySelectorAll('.slick-slide .content_container').forEach((ele,index)=>{
+  if((index+1) % 3 == 0){
+      ele.style.backgroundImage = 'linear-gradient(181deg,beige,pink)'
+  }
+});
+document.querySelectorAll('.slick-slide .content_container').forEach((ele,index)=>{
+  if((index+1) % 2 == 0){
+      ele.style.backgroundImage = 'linear-gradient(181deg, #f3c9c9, #ff8787d9)'
+  }
+});
+document.querySelectorAll('.slick-slide .content_container').forEach((ele,index)=>{
+  if(index == 0){
+      ele.style.backgroundImage = 'linear-gradient(181deg,rgb(202 243 201), rgb(247 141 141 / 85%))'
+  }
+});
+
+// Using CSS
+#sid-{{section.id}} .separate_slider_container .slick-slide:nth-child(4n+1) .content_container {
+  background: green;
+}
+#sid-{{section.id}} .separate_slider_container .slick-slide:nth-child(4n+2) .content_container {
+    background: blue;
+}
+#sid-{{section.id}} .separate_slider_container .slick-slide:nth-child(4n+3) .content_container {
+    background: red;
+}
+#sid-{{section.id}} .separate_slider_container .slick-slide:nth-child(4n+4) .content_container {
+    background: purple;
+}
