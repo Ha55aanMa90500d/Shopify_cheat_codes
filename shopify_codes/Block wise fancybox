@@ -1,0 +1,451 @@
+<!-- Section File Name: enable-security.liquid -->
+<!-- Section Name: Enable Security -->
+<!-- Presets Name: Enable Security -->
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+>
+
+<!-- Styles -->
+
+<style>
+  #sid-{{section.id}} .main_container{
+    width: 100%;
+    position: relative;
+    background-color: {{section.settings.bg_color}};
+  }
+  #sid-{{section.id}} .content_wrapper{
+    {% if section.settings.full_width == false %}
+      max-width: {{section.settings.maxWidth}}px;
+    {% endif %}
+    width: 100%;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+  }
+  #sid-{{section.id}} .th_main_cont {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.blocks_alignment }}, 1fr);
+    gap: {{ section.settings.spacing_between_blocks }}px;
+  }
+  #sid-{{ section.id }} .thumbnail_cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #sid-{{section.id}} .imageDiv{
+    max-width: {{ section.settings.thumbnails_max_width }}px;
+    width:100%;
+  }
+  #sid-{{section.id}} .imageDiv > img{
+    width: 100%;
+  }
+  #sid-{{section.id}} .first_img {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  #sid-{{section.id}} .thumbnail_title *{
+    font-size: {{ section.settings.title_font_size }}px;
+    color: {{section.settings.title_font_color}};
+    font-weight: {{section.settings.title_font_weight}};
+  }
+
+  @media only screen and (max-width: 767px){
+    #sid-{{section.id}} .content_wrapper{
+      padding: {{ section.settings.padding_top_mb }}px {{ section.settings.padding_right_mb }}px {{ section.settings.padding_bottom_mb }}px {{ section.settings.padding_left_mb }}px;
+    }
+    #sid-{{section.id}} .th_main_cont {
+      display: grid;
+      grid-template-columns: repeat({{ section.settings.blocks_m_alignment }}, 1fr);
+    }
+    #sid-{{section.id}} .first_img span {
+      font-size: {{ section.settings.img_m_font_size }}px;
+      font-weight: {{ section.settings.img_m_font_weight }};
+      color: {{ section.settings.img_m_font_size }};
+    }
+    #sid-{{section.id}} .thumbnail_title > a {
+      font-size: {{ section.settings.title_m_font_size }}px;
+      color: {{section.settings.title_m_font_color}};
+      font-weight: {{section.settings.title_m_font_weight}};
+      text-decoration: none;
+    }
+    #sid-{{section.id}} .thumbnail_title > a:hover {
+      text-decoration: underline;
+    }
+  }
+</style>
+
+<!-- Styles End  -->
+
+<!-- MarkUp (HTML)  -->
+
+<div id="sid-{{ section.id }}">
+  <div class="main_container">
+    <div class="content_wrapper">
+      <div class="th_main_cont">
+        {% for block in section.blocks %}
+          <div class="thumbnail_cont">
+            <div class="thumbnail_img_cont">
+              {% if block.settings.first_img != blank %}
+                <div class="first_img">
+                  <div class="imageDiv">
+                    <img src="{{ block.settings.first_img | image_url }}">
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            {% if block.settings.thumbnail_title != blank %}
+              <div class="thumbnail_title">
+                {{ block.settings.thumbnail_title }}
+              </div>
+            {% endif %}
+            <div id="bid-image{{ block.id }}">
+              <button data-fancybox="gallery" data-src="{{ block.settings.first_img | image_url }}">
+                View Wallpaper
+              </button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MarkUp (HTML) End -->
+
+<!-- Scripts  -->
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script>
+  // Fancy Box Code for Each Block.
+  
+  {% for block in section.blocks %}
+    Fancybox.bind('#bid-image{{ block.id }} [data-fancybox="gallery"]', {
+        content: '<a href="{{ block.settings.first_img | image_url }}" download>Download Wallpaper</a>', // Download Button for Download the Image which will be shown on FancyBox Modal
+    });
+  {% endfor %}
+  
+  // Fancy Box Code for Each Block End.
+</script>
+
+<!-- Scripts End  -->
+
+<!-- Settings -->
+
+{% schema %}
+{
+  "name": "Enable Security",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Page Full Width",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "maxWidth",
+      "label": "Page Width",
+      "default": 1440
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "header",
+      "content": "thumbnail settings"
+    },
+    {
+      "type": "select",
+      "id": "blocks_alignment",
+      "label": "blocks per Row",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 blocks"
+        },
+        {
+          "value": "3",
+          "label": "3 blocks"
+        },
+        {
+          "value": "4",
+          "label": "4 blocks"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "range",
+      "id": "spacing_between_blocks",
+      "min": 0,
+      "max": 100,
+      "default": 30,
+      "unit": "px",
+      "label": "Spacing between Blocks"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Title Font weight",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "title_font_color",
+      "label": "Title Font Color"
+    },
+    {
+      "type": "range",
+      "id": "img_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "img_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Card Title Font weight",
+      "default": 600
+    },
+    {
+      "type": "number",
+      "id": "thumbnails_max_width",
+      "default": 70,
+      "label": "Thumbnails Maximum Width"
+    },
+    {
+      "type": "range",
+      "id": "spacing_between_thumbnails",
+      "min": 0,
+      "max": 100,
+      "default": 20,
+      "unit": "px",
+      "label": "Spacing between Thumbnails"
+    },
+    {
+      "type": "color",
+      "id": "img_font_color",
+      "label": "Card Title Font Color"
+    },
+    {
+      "type": "header",
+      "content": "thumbnail settings (mobile responsive)"
+    },
+    {
+      "type": "select",
+      "id": "blocks_m_alignment",
+      "label": "blocks per Row",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 blocks"
+        },
+        {
+          "value": "2",
+          "label": "2 blocks"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "title_m_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_m_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Title Font weight",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "title_m_font_color",
+      "label": "Title Font Color"
+    },
+    {
+      "type": "range",
+      "id": "img_m_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "img_m_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Card Title Font weight",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "img_m_font_color",
+      "label": "Card Title Font Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "thumbnail_grid",
+      "name": "Thumbnail Grid",
+      "settings": [
+        {
+          "type": "header",
+          "content": "thumbnail Settings"
+        },
+        {
+          "type": "text",
+          "id": "thumbnail_title",
+          "label": "Thumbnail title"
+        },
+        {
+          "type": "image_picker",
+          "id": "first_img",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "first_img_text",
+          "label": "Image Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Enable Security"
+    }
+  ]
+}
+{% endschema %}
+
+<!-- End Settings -->
