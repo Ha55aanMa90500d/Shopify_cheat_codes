@@ -6,6 +6,9 @@
     padding-bottom:{{ section.settings.section_heading_padding_bottom }}px;
     text-align:{{ section.settings.section_heading_text_alignment }};
     text-transform:{{ section.settings.section_heading_text_transform }};
+    margin: 0;
+    line-height: 1.2;
+    font-family: inherit;
   }
 
   @media only screen and (max-width: 767px){
@@ -38,17 +41,17 @@
     "type":"range",
     "id":"section_heading_font_size",
     "label":"Heading Font Size",
-    "min":12,
-    "max":70,
-    "default":56
+    "min":0,
+    "max":100,
+    "default":40
   },
   {
     "type":"range",
     "id":"section_heading_font_size_mb",
     "label":"Heading Font Size Mobile",
-    "min":12,
-    "max":70,
-    "default":32
+    "min":0,
+    "max":100,
+    "default":30
   },
   {
     "type":"range",
@@ -114,6 +117,6 @@
         "label": "None"
       }
     ],
-    "default": "capitalize"
+    "default": "uppercase"
   }
 // settings End
