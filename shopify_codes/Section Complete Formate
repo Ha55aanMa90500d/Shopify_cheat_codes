@@ -3,7 +3,7 @@
 <!-- Presets Name: Section name -->
 
 <div id="sid-{{ section.id }}">
-  <div class="main-container">
+  <div class="main_container">
     <div class="content_wrapper">
       
     </div>
@@ -11,7 +11,7 @@
 </div>
 
 <style>
-  #sid-{{section.id}} .main-container{
+  #sid-{{section.id}} .main_container{
     width: 100%;
     position: relative;
     {% if section.settings.bg_image %}
@@ -46,7 +46,7 @@
     #sid-{{section.id}} .content_wrapper{
       padding: {{ section.settings.padding_top_mb }}px {{ section.settings.padding_right_mb }}px {{ section.settings.padding_bottom_mb }}px {{ section.settings.padding_left_mb }}px;
     }
-    #sid-{{section.id}} .main-container{
+    #sid-{{section.id}} .main_container{
       {% if section.settings.bg_image_mb != blank %}
       background-image: url('{{ section.settings.bg_image_mb | img_url: 'master' }}');
       {% if section.settings.bg_height_check == true %}
