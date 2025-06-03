@@ -1,0 +1,506 @@
+<!-- Section File Name: custom-banner.liquid -->
+<!-- Section Name: Custom Banner -->
+<!-- Presets Name: Custom Banner -->
+
+
+<style>
+
+  #sid-{{section.id}} .main_container{
+    width: 100%;
+    position: relative;
+    background-color: {{section.settings.bg_color}};
+  }
+  #sid-{{section.id}} .content_wrapper{
+    {% if section.settings.full_width == false %}
+      max-width: {{section.settings.maxWidth}}px;
+    {% endif %}
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+  }
+  #sid-{{section.id}} .sub-container{
+    positive: relative;
+  }
+  #sid-{{section.id}} .main-backgroundImagemobile,
+  #sid-{{section.id}} .main-backgroundImagetabportrait, 
+  #sid-{{section.id}} .main-backgroundImagetab {
+    display: none;
+  }
+  #sid-{{section.id}} .main-backgroundImagedesktop img {
+    max-width: 100%;
+    width: 100%;
+    vertical-align: middle;
+  }
+  #sid-{{section.id}} .text-container {
+    position: absolute;
+    top: 55%;
+    left: 51%;
+    transform: translate(-51%, -50%);
+    max-width: 100%;
+    width: 100%;
+    gap: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  #sid-{{section.id}} .sliderThumbnails {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    /* padding: 15px 0; */
+    gap: 15px;
+    width: 55%;
+    margin: 20px 0;
+  }
+  #sid-{{section.id}} img {
+    width: 100%;
+  }
+  #sid-{{section.id}} .sub-heading{
+    font-size: {{ section.settings.subHeadingSize }}px;
+    font-family: "Nunito Sans",sans-serif;
+    font-weight: {{ section.settings.subHeadingWeight }};
+    color: {{ section.settings.subHeadingColor }};
+    margin: 5px 0px;
+  }
+  #sid-{{section.id}} .main-heading{
+    color: {{ section.settings.mainHeadingColor }};
+    font-size: {{ section.settings.mainHeadingSize }}px;
+    font-weight: {{ section.settings.mainHeadingWeight }};
+    font-family: "Nunito Sans",sans-serif;
+    margin: 0px 0 15px;
+  }
+  #sid-{{section.id}} .main-text{
+    color: {{ section.settings.mainTextColor }};
+    font-size: {{ section.settings.mainTextSize }}px;
+    font-weight: 500;
+    font-family: "Nunito Sans",sans-serif;
+    width: 60%;
+  }
+  #sid-{{section.id}} .main-text p {
+    margin: 0;
+  }
+  #sid-{{section.id}} a.bannerButton{
+    color: {{ section.settings.bannerButtonColor }};
+    font-size: {{ section.settings.bannerButtonSize }}px;
+    background-color: {{ section.settings.bannerButtonBgColor }};
+    font-weight: 700;
+    padding: 14px 30px;
+    font-family: "Nunito Sans",sans-serif;
+    text-decoration: none;
+    margin: 0px 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+  #sid-{{section.id}} {
+
+  }
+
+  @media only screen and (max-width: 990px) and (min-width: 769px){
+    #sid-{{section.id}} .main-backgroundImagemobile,
+    #sid-{{section.id}} .main-backgroundImagetabportrait, 
+    #sid-{{section.id}} .main-backgroundImagedesktop {
+      display: none;
+    }
+    #sid-{{section.id}} .main-backgroundImagetab {
+      display: block;
+    }
+  }
+  @media only screen and (max-width: 768px) and (min-width: 426px){
+    #sid-{{section.id}} .main-backgroundImagemobile,
+    #sid-{{section.id}} .main-backgroundImagetab, 
+    #sid-{{section.id}} .main-backgroundImagedesktop {
+      display: none;
+    }
+    #sid-{{section.id}} .main-backgroundImagetabportrait {
+      display: block;
+    }
+  }
+  @media only screen and (max-width: 425px){
+    #sid-{{section.id}} .main-backgroundImagetabportrait,
+    #sid-{{section.id}} .main-backgroundImagetab, 
+    #sid-{{section.id}} .main-backgroundImagedesktop {
+      display: none;
+    }
+    #sid-{{section.id}} .main-backgroundImagemobile {
+      display: block;
+    }    
+    #sid-{{section.id}} .text-container{
+      width: 90%;
+    }
+  }
+  @media only screen and (max-width: 768px){
+    #sid-{{section.id}} .content_wrapper{
+      padding: {{ section.settings.padding_top_mb }}px {{ section.settings.padding_right_mb }}px {{ section.settings.padding_bottom_mb }}px {{ section.settings.padding_left_mb }}px;
+    }
+    #sid-{{section.id}} .text-container{
+      flex-direction: column;
+      align-items: center;
+      top: 51%;
+      gap: 30px;
+    }
+    #sid-{{section.id}} .main-text{
+      width: 100%;
+    }
+    #sid-{{section.id}} .sliderThumbnails{
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<div id="sid-{{ section.id }}">
+  <div class="main_container">
+    <div class="content_wrapper">
+      <div class="sub-container">
+        {% if section.settings.mainBGimage != blank %}
+          <div class="main-backgroundImagedesktop">
+            <img src="{{ section.settings.mainBGimage | image_url }}" alt="bg-image" />
+          </div>
+        {% endif %}
+        {% if section.settings.mainBGimagetab != blank %}
+          <div class="main-backgroundImagetab">
+            <img src="{{ section.settings.mainBGimagetab | image_url }}" alt="bg-image" />
+          </div>
+        {% endif %}
+        {% if section.settings.mainBGimagetabportrait != blank %}
+          <div class="main-backgroundImagetabportrait">
+            <img src="{{ section.settings.mainBGimagetabportrait | image_url }}" alt="bg-image" />
+          </div>
+        {% endif %}
+        {% if section.settings.mainBGimagemobile != blank %}
+          <div class="main-backgroundImagemobile">
+            <img src="{{ section.settings.mainBGimagemobile | image_url }}" alt="bg-image" />
+          </div>
+        {% endif %}
+        <div class="text-container">
+          <h3 class="sub-heading">{{ section.settings.subHeading }}</h3>
+          <div class="heading-image">
+            {% if section.settings.mainHeadingImage != blank %}
+              <img src="{{ section.settings.mainHeadingImage | image_url }}" alt="heading image" />
+            {% endif %}
+          </div>
+          <h2 class="main-heading">{{ section.settings.mainHeading }}</h2>
+          <div class="main-text">{{ section.settings.mainText }}</div>
+          <a class="bannerButton" href="{{ section.settings.buttonURL }}">{{ section.settings.bannerButton }}</a>
+          {% if section.blocks.size > 0 %}
+            <div class="sliderThumbnails">
+              {% for block in section.blocks %}
+                <div class="slideThumbnail">
+                  {% if block.settings.slideThumbnail != blank %}
+                    <img src="{{ block.settings.slideThumbnail | image_url }}" />
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+         {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "mainBGimage",
+      "label": "Main Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mainBGimagetab",
+      "label": "Main Background Image Tab"
+    },
+    {
+      "type": "image_picker",
+      "id": "mainBGimagetabportrait",
+      "label": "Main Background Image Tabs Portrait"
+    },
+    {
+      "type": "image_picker",
+      "id": "mainBGimagemobile",
+      "label": "Main Background Image Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Sub Heading Settings",
+      "info": "Settings of font size, weight, and color ",
+    },
+    {
+      "type": "text",
+      "id": "subHeading",
+      "label": "Sub Heading",
+      "info": "Above Main Heading",
+      "default": "Welcome to"
+    },
+    {
+      "type": "color",
+      "id": "subHeadingColor",
+      "label": "Sub Heading Color",
+      "default": "#7A7A4F"
+    },
+    {
+      "type": "range",
+      "id": "subHeadingSize",
+      "label": "Sub Heading Size",
+      "max": 56,
+      "min": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "subHeadingWeight",
+      "label": "Sub Heading Weight",
+      "max": 900,
+      "min": 100,
+      "step": 100,
+      "default": 500
+    },
+    {
+      "type": "image_picker",
+      "id": "mainHeadingImage",
+      "label": "Main Heading Image"
+    },
+    {
+      "type": "header",
+      "content": "Main Heading Settings",
+      "info": "Settings of font size, weight, and color ",
+    },
+    {
+      "type": "text",
+      "id": "mainHeading",
+      "label": "Main Heading",
+      "info": "Under the main image",
+      "default": "NATURAL BEAUTY REDEFINED"
+    },
+    {
+      "type": "color",
+      "id": "mainHeadingColor",
+      "label": "Main Heading Color",
+      "default": "#7A7A4F"
+    },
+     {
+      "type": "range",
+      "id": "mainHeadingSize",
+      "label": "Main Heading Size",
+      "max": 56,
+      "min": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mainHeadingWeight",
+      "label": "Main Heading Weight",
+      "max": 900,
+      "min": 100,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "header",
+      "content": "Text Settings",
+      "info": "Settings of font size, weight, and color ",
+    },
+    {
+      "type": "richtext",
+      "id": "mainText",
+      "label": "Text",
+      "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</p>"
+    },
+    {
+      "type": "color",
+      "id": "mainTextColor",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+     {
+      "type": "range",
+      "id": "mainTextSize",
+      "label": "Text Size",
+      "max": 24,
+      "min": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Button Settings",
+      "info": "Settings of font size, background color, text color, redirect url ",
+    },
+    {
+      "type": "text",
+      "id": "bannerButton",
+      "label": "Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "buttonURL",
+      "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "bannerButtonColor",
+      "label": "Text Color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bannerButtonBgColor",
+      "label": "Text Color",
+      "default": "#7A7A4F"
+    },
+     {
+      "type": "range",
+      "id": "bannerButtonSize",
+      "label": "Text Size",
+      "max": 24,
+      "min": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Page Full Width",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "maxWidth",
+      "label": "Page Width",
+      "default": 1440
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    }
+
+  ],
+  "blocks": [
+    {
+      "type": "image-slider",
+      "name": "Image Slider",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slideThumbnail",
+          "label": "Block Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner"
+    }
+  ]
+}
+{% endschema %}
