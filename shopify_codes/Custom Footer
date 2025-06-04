@@ -1,0 +1,664 @@
+<!-- Section File Name: instagram-feed.liquid -->
+<!-- Section Name: Instagram Feed -->
+<!-- Presets Name: Instagram Feed -->
+
+<style>
+  #sid-{{section.id}} .main_container{
+    width: 100%;
+    position: relative;
+    {% if section.settings.bg_image %}
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('{{ section.settings.bg_image | img_url: 'master' }}');
+    {% else %}
+      background-color: {{section.settings.bg_color}};
+    {% endif %}
+    {% if section.settings.bg_height_check == true %}
+      {% if section.settings.show_height == true %}
+        height: {{section.settings.bgs_height}}px;
+      {% else %}
+        padding-bottom: calc(100% / ({{section.settings.bg_width}} / {{section.settings.bg_height}}));
+      {% endif %}
+    {% endif %}
+  }
+  #sid-{{section.id}} .content_wrapper{
+    {% if section.settings.full_width == false %}
+      max-width: {{section.settings.maxWidth}}px;
+    {% endif %}
+    width: 100%;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+  }
+  #sid-{{section.id}} .flex_container {
+    display: flex;
+    gap: 0px;
+  }
+  #sid-{{section.id}} .flex_container img{
+    object-fit: cover;
+  }
+  #sid-{{section.id}} a.block_wrapper {
+    display: flex;
+    padding: 15px;
+  }
+  #sid-{{section.id}} .dual_feed_box {
+    width: 100%;
+    max-width: 154px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0px;
+  }
+  #sid-{{section.id}} .dual_feed_item{
+    display: flex;
+    padding: 15px;
+  }
+  #sid-{{section.id}} {
+
+  }
+  #sid-{{section.id}} .heading_flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    padding-bottom:{{ section.settings.section_heading_padding_bottom }}px;
+  }
+  #sid-{{section.id}} .section_heading:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 106%;
+    width: 100%;
+    max-width: 260px;
+    height: 2px;
+    background-image: url('https://cdn.shopify.com/s/files/1/0942/0626/3609/files/beforeafterimage.png?v=1748961014');
+  }
+  #sid-{{section.id}} .section_heading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 126%;
+    width: 100%;
+    max-width: 260px;
+    height: 2px;
+    background-image: url('https://cdn.shopify.com/s/files/1/0942/0626/3609/files/beforeafterimage.png?v=1748961014');
+  }
+  #sid-{{section.id}} .icon_wrapper {
+    display: flex;
+  }
+  #sid-{{section.id}} .section_heading {
+    color:{{ section.settings.section_heading_color }};
+    font-size:{{ section.settings.section_heading_font_size }}px;
+    font-weight:{{ section.settings.section_heading_font_weight }};
+    text-align:{{ section.settings.section_heading_text_alignment }};
+    text-transform:{{ section.settings.section_heading_text_transform }};
+    margin: 0;
+    padding: 0;
+    position: relative;
+    line-height: 1.2;
+    letter-spacing: 0;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  @media only screen and (max-width: 2560px) and (min-width: 1440px){
+    #sid-{{ section.id }} .dual_feed_box{
+      display: grid;
+      max-width: 11%;
+    }
+  }
+  @media only screen and (max-width: 990px) and (min-width: 769px){
+    #sid-{{section.id}} .content_wrapper{
+      padding: {{ section.settings.padding_top_tab }}px {{ section.settings.padding_right_tab }}px {{ section.settings.padding_bottom_tab }}px {{ section.settings.padding_left_tab }}px;
+    }
+    #sid-{{ section.id }} .flex_container{
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #sid-{{ section.id }} .dual_feed_box{
+      max-width: 16.67%;
+    }
+    #sid-{{ section.id }} .dual_feed_item{
+      padding: 12px;
+    }
+    #sid-{{ section.id }} a.block_wrapper{
+      max-width: 33.33%;
+      padding: 12px;
+    }
+    #sid-{{section.id}} .section_heading:before,
+    #sid-{{section.id}} .section_heading:after {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 768px) and (min-width: 426px) {
+    #sid-{{section.id}} .section_heading {
+      font-size:{{ section.settings.section_heading_font_size_mb }}px;
+    }
+    #sid-{{ section.id }} .flex_container{
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #sid-{{ section.id }} .dual_feed_box{
+      max-width: 16.67%;
+    }
+    #sid-{{ section.id }} .dual_feed_item{
+      padding: 12px;
+    }
+    #sid-{{ section.id }} a.block_wrapper{
+      max-width: 33.33%;
+      padding: 12px;
+    }
+    #sid-{{section.id}} .section_heading:before,
+    #sid-{{section.id}} .section_heading:after {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    #sid-{{section.id}} .content_wrapper{
+      padding: {{ section.settings.padding_top_mb }}px {{ section.settings.padding_right_mb }}px {{ section.settings.padding_bottom_mb }}px {{ section.settings.padding_left_mb }}px;
+    }
+    #sid-{{section.id}} .main_container{
+      {% if section.settings.bg_image_mb != blank %}
+        background-image: url('{{ section.settings.bg_image_mb | img_url: 'master' }}');
+        {% if section.settings.bg_height_check == true %}
+          {% if section.settings.show_height_mb == true %}
+            height: {{section.settings.bgs_height_mb}}px;
+          {% else %}
+            padding-bottom: calc(100% / ({{section.settings.bg_width_mb}} / {{section.settings.bg_height_mb}}));
+            height: 0;
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    }
+    #sid-{{ section.id }} .section_heading{
+      font-size: {{ section.settings.section_heading_font_size_mb }}px;
+    }
+  }
+  @media only screen and (max-width: 425px){
+    #sid-{{ section.id }} .flex_container{
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+    #sid-{{ section.id }} .dual_feed_box{
+      max-width: 100%;
+      flex-direction: row;
+      gap: 20px;
+    }
+    #sid-{{ section.id }} .dual_feed_item{
+      padding: 0px;
+      width: 100%;
+    }
+    #sid-{{ section.id }} a.block_wrapper{
+      max-width: 100%;
+      padding: 0px;
+    }
+    #sid-{{section.id}} .section_heading:before,
+    #sid-{{section.id}} .section_heading:after {
+      display: none;
+    }
+    #sid-{{ section.id }} .heading_flex{
+      flex-direction: column;
+      padding-bottom: 30px;
+    }
+    #sid-{{ section.id }} .icon_wrapper{
+      max-width: 36px;
+    }
+    #sid-{{ section.id }} .section_heading{
+      font-size: {{ section.settings.section_heading_font_size_mb }}px;
+    }
+  }
+</style>
+
+<div id="sid-{{ section.id }}">
+  <div class="main_container">
+    <div class="content_wrapper">
+      <div class="heading_flex">
+        <div class="icon_wrapper">
+          <img src="{{ section.settings.icon | image_url }}" width="100%" height="auto"/>
+        </div>
+        <h2 class="section_heading">{{ section.settings.section_heading }}</h2>
+      </div>  
+      <div class="flex_container">
+        {% for block in section.blocks %}
+          {% if block.type == "single_feed" %}
+            <a class="block_wrapper" href="{{ block.settings.url }}">
+              <img src="{{ block.settings.image | image_url }}" width="100%" height="auto"/>
+            </a>
+          {% elsif block.type == 'dual_feed' %}  
+            <div class="dual_feed_box">
+              <a class="dual_feed_item" href="{{ block.settings.url1 }}">
+                <img src="{{ block.settings.image1 | image_url }}" width="100%" height="auto"/>
+              </a>
+              <a class="dual_feed_item" href="{{ block.settings.url2 }}">
+                <img src="{{ block.settings.image2 | image_url }}" width="100%" height="auto"/>
+              </a>
+            </div>  
+          {% endif %}
+        {% endfor %}  
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Tabs Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_tab",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right_tab",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_tab",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_left_tab",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Page Full Width",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "maxWidth",
+      "label": "Page Width",
+      "default": 1440
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mb",
+      "label": "Background Image Mobile",
+      "visible_if": "{{ section.settings.bg_color == 'transparent' }}"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "header",
+      "content": "Background Image Size Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "bg_height_check",
+      "label": "Show Image With Dimension",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Image Dimension",
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "number",
+      "id": "bg_width",
+      "label": "Width",
+      "default": 2560,
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "number",
+      "id": "bg_height",
+      "label": "Height",
+      "default": 1200,
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Specific Height",
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_height",
+      "label": "Show Specific Height",
+      "default": false,
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "number",
+      "id": "bgs_height",
+      "label": "Height",
+      "default": 800,
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Image Dimension Mobile",
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "number",
+      "id": "bg_width_mb",
+      "label": "Width",
+      "default": 780,
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "number",
+      "id": "bg_height_mb",
+      "label": "Height",
+      "default": 2280,
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Specific Height Mobile",
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_height_mb",
+      "label": "Show Specific Height",
+      "default": false,
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type": "number",
+      "id": "bgs_height_mb",
+      "label": "Height",
+      "default": 600,
+      "visible_if": "{{ section.settings.bg_height_check == true }}"
+    },
+    {
+      "type":"header",
+      "content":"Heading Settings"
+    },
+    {
+      "type":"text",
+      "id":"section_heading",
+      "label":"heading"
+    },
+    {
+      "type":"color",
+      "id":"section_heading_color",
+      "label":"Heading Color",
+      "visible_if": "{{ section.settings.section_heading != blank }}"
+    },
+    {
+      "type":"range",
+      "id":"section_heading_font_size",
+      "label":"Heading Font Size",
+      "min":0,
+      "max":100,
+      "default":40,
+      "visible_if": "{{ section.settings.section_heading != blank }}"
+    },
+    {
+      "type":"range",
+      "id":"section_heading_font_size_mb",
+      "label":"Heading Font Size Mobile",
+      "min":0,
+      "max":100,
+      "default":30,
+      "visible_if": "{{ section.settings.section_heading != blank }}"
+    },
+    {
+      "type":"range",
+      "id":"section_heading_font_weight",
+      "label":"Heading Font Weight",
+      "min":100,
+      "max":900,
+      "step":100,
+      "default":600,
+      "visible_if": "{{ section.settings.section_heading != blank }}"
+    },
+    {
+      "type":"range",
+      "id":"section_heading_padding_bottom",
+      "label":"Heading Padding Bottom",
+      "min":0,
+      "max":100,
+      "step":1,
+      "default":0,
+      "visible_if": "{{ section.settings.section_heading != blank }}"
+    },
+    {
+      "type": "select",
+      "id": "section_heading_text_alignment",
+      "label": "Heading Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "justify",
+          "label": "Justify"
+        }
+      ],
+      "default": "left",
+      "visible_if": "{{ section.settings.section_heading != blank }}"
+    },
+    {
+      "type": "select",
+      "id": "section_heading_text_transform",
+      "label": "Heading Text Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "uppercase",
+      "visible_if": "{{ section.settings.section_heading != blank }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "single_feed",
+      "name": "Single Feed",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Feed URL",
+          "visible_if": "{{ block.settings.image != blank }}"
+        }
+      ]
+    },
+    {
+      "type": "dual_feed",
+      "name": "Dual Feed",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image1",
+          "label": "First Feed Image"
+        },
+        {
+          "type": "url",
+          "id": "url1",
+          "label": "First Feed URL",
+          "visible_if": "{{ block.settings.image1 != blank }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "image2",
+          "label": "Second Feed Image"
+        },
+        {
+          "type": "url",
+          "id": "url2",
+          "label": "Second Feed URL",
+          "visible_if": "{{ block.settings.image2 != blank }}"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Feed"
+    }
+  ]
+}
+{% endschema %}
