@@ -1,0 +1,866 @@
+{% schema %}
+{
+  "name": "Timeline Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Page Full Width",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "maxWidth",
+      "label": "Page Width",
+      "default": 1440
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mb",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "header",
+      "content": "Background Image Size Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "bg_height_check",
+      "label": "Show Image With Dimension",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Image Dimension"
+    },
+    {
+      "type": "number",
+      "id": "bg_width",
+      "label": "Width",
+      "default": 2560
+    },
+    {
+      "type": "number",
+      "id": "bg_height",
+      "label": "Height",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Specific Height"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_height",
+      "label": "Show Specific Height",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "bgs_height",
+      "label": "Height",
+      "default": 800
+    },
+    {
+      "type": "header",
+      "content": "Image Dimension Mobile"
+    },
+    {
+      "type": "number",
+      "id": "bg_width_mb",
+      "label": "Width",
+      "default": 780
+    },
+    {
+      "type": "number",
+      "id": "bg_height_mb",
+      "label": "Height",
+      "default": 2280
+    },
+    {
+      "type": "header",
+      "content": "Specific Height Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_height_mb",
+      "label": "Show Specific Height",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "bgs_height_mb",
+      "label": "Height",
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "Section Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "timeline-heading",
+      "label": "Add Section Heading"
+    },
+    {
+      "type": "range",
+      "id": "timeline-heading-font-size",
+      "label": "Add Section Heading Font Size Desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "timeline-heading-font-size-mb",
+      "label": "Add Section Heading Font Size Mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "timeline-heading-font-weight",
+      "label": "Add Section Heading Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "color",
+      "id": "timeline-heading-color",
+      "label": "Add Section Heading Color"
+    },
+    {
+      "type": "select",
+      "id": "timeline-heading-text-transform",
+      "label": "Add Section Heading Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "timeline-heading-text-align",
+      "label": "Add Section Heading Text Align",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "timeline-line-color",
+      "label": "Add TimeLine Line Color",
+      "default": "#0C78CA"
+    },
+    {
+      "type": "color",
+      "id": "timeline-dot-color",
+      "label": "Add TimeLine Dots Color",
+      "default": "#0C78CA"
+    },
+    {
+      "type": "header",
+      "content": "Time Line Year"
+    },
+    {
+      "type": "range",
+      "id": "year_font_size",
+      "label": "Year Font Size Desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "year_font_size_mb",
+      "label": "Year Font Size Mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "year_font_weight",
+      "label": "Year Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "year_color",
+      "label": "Year Color",
+      "default": "#000000"
+    },
+
+    {
+      "type": "select",
+      "id": "year_text_transform",
+      "label": "Year Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Time Line Event"
+    },
+    {
+      "type": "range",
+      "id": "event_font_size",
+      "label": "Event Font Size (px) Desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "event_font_size_mb",
+      "label": "Event Font Size (px) Mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "event_font_weight",
+      "label": "Event Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "color",
+      "id": "event_color",
+      "label": "Event Text Color",
+      "default": "#000000"
+    },
+
+    {
+      "type": "select",
+      "id": "event_text_transform",
+      "label": "Event Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "UPPERCASE" },
+        { "value": "lowercase", "label": "lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "space_between_cards",
+      "default": 60,
+      "min": 0,
+      "max": 100,
+      "label": "Space between Cards"
+    },
+    {
+      "type": "number",
+      "id": "card_images_width",
+      "label": "Card image Width",
+      "default": 128
+    },
+    {
+      "type": "checkbox",
+      "id": "overlay_text",
+      "default": false,
+      "label": "Card text on the image"
+    },
+    {
+      "type": "number",
+      "id": "overlay_card_height",
+      "label": "Card Height",
+      "default": 400,
+      "visible_if": "{{ section.settings.overlay_text }}"
+    },
+    {
+      "type": "number",
+      "id": "overlay_card_width",
+      "label": "Card Width",
+      "default": 250,
+      "visible_if": "{{ section.settings.overlay_text }}"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_card",
+      "name": "Timeline Card",
+      "settings": [
+        {
+          "type": "color",
+          "id": "card-bg-color",
+          "label": "Add Card Background Color"
+        },
+        {
+          "type": "image_picker",
+          "id": "timeline-img",
+          "label": "Add timeline image"
+        },
+        {
+          "type": "richtext",
+          "id": "year",
+          "label": "Year"
+        },
+        {
+          "type": "select",
+          "id": "year_text_align",
+          "label": "Year Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "richtext",
+          "id": "event_text",
+          "label": "Event Description"
+        },
+        {
+          "type": "select",
+          "id": "event_text_align",
+          "label": "Event Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Card Alignment",
+          "default": "left",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline"
+    }
+  ]
+}
+{% endschema %}
+
+<div id="sid-{{ section.id }}">
+  <div class="main-container">
+    <div class="content_wrapper">
+      <div class="timeline-heading">{{ section.settings['timeline-heading'] }}</div>
+      <div class="timeline-container">
+        {% for block in section.blocks %}
+          {% assign year = block.settings.year %}
+          {% assign text = block.settings.event_text %}
+          {% assign align = block.settings.alignment %}
+          {% assign image = block.settings['timeline-img'] %}
+          {% assign block_id = block.id %}
+
+          {% if year != blank and text != blank %}
+            <div
+              class="timeline-event {% if align == 'right' %}right{% else %}left{% endif %}"
+              data-alignment="{% if align == 'right' %}right{% else %}left{% endif %}"
+            >
+              <div class="event-card time-line-event-card-{{ block_id }}">
+                {% if image != blank %}
+                  <div class="image_container">
+                    <img src="{{ image | img_url: 'master' }}" width="100%" height="auto">
+                  </div>
+                {% endif %}
+                <div class="timeline-text-container">
+                  <div class="time-line-year year-{{ block_id }}">{{ year }}</div>
+                  <div class="time-line-event time-line-desc-{{ block.id }}">{{ text }}</div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+   #sid-{{section.id}} .main-container{
+      width: 100%;
+      position: relative;
+      {% if section.settings.bg_image %}
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('{{ section.settings.bg_image | img_url: 'master' }}');
+      {% else %}
+      background-color: {{section.settings.bg_color}};
+      {% endif %}
+      {% if section.settings.bg_height_check == true %}
+      {% if section.settings.show_height == true %}
+      height: {{section.settings.bgs_height}}px;
+      {% else %}
+      padding-bottom: calc(100% / ({{section.settings.bg_width}} / {{section.settings.bg_height}}));
+      {% endif %}
+      {% endif %}
+    }
+    #sid-{{section.id}} .content_wrapper{
+      {% if section.settings.full_width == false %}
+      max-width: {{section.settings.maxWidth}}px;
+      {% endif %}
+      width: 100%;
+      margin: 0 auto;
+      padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    }
+    #sid-{{section.id}} .timeline-text-container{
+      display: flex;
+      flex-direction: column;
+      {% if section.settings.overlay_text == true %}
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 88;
+        transform: translate(-50%, -50%);
+        height: 100%;
+        width: 93%;
+        padding: 20px;
+        height: 90%;
+        background: #000000a3;
+      {% endif %}  
+    }
+
+    @media only screen and (max-width: 767px){
+      #sid-{{section.id}} .content_wrapper{
+        padding: {{ section.settings.padding_top_mb }}px {{ section.settings.padding_right_mb }}px {{ section.settings.padding_bottom_mb }}px {{ section.settings.padding_left_mb }}px;
+      }
+      #sid-{{section.id}} .main-container{
+        {% if section.settings.bg_image_mb != blank %}
+        background-image: url('{{ section.settings.bg_image_mb | img_url: 'master' }}');
+        {% if section.settings.bg_height_check == true %}
+        {% if section.settings.show_height_mb == true %}
+        height: {{section.settings.bgs_height_mb}}px;
+        {% else %}
+        padding-bottom: calc(100% / ({{section.settings.bg_width_mb}} / {{section.settings.bg_height_mb}}));
+        height: 0;
+        {% endif %}
+        {% endif %}
+        {% endif %}
+      }
+    }
+
+    #sid-{{section.id}} .timeline-heading *{
+      font-size: {{ section.settings.timeline-heading-font-size }}px;
+      font-weight: {{ section.settings.timeline-heading-font-weight }};
+      color: {{ section.settings.timeline-heading-color }};
+      text-transform: {{ section.settings.timeline-heading-text-transform }};
+      text-align: {{ section.settings.timeline-heading-text-align }};
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+   #sid-{{section.id}} .timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+   #sid-{{section.id}} .timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background:{{section.settings.timeline-line-color}};
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+
+   #sid-{{section.id}} .timeline-event {
+    padding: 15px 0;
+    position: relative;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+    box-sizing: border-box;
+    margin-bottom: {{ section.settings.space_between_cards }}px;
+  }
+
+   #sid-{{section.id}} .timeline-event.left {
+    left: 0;
+
+    padding-right: 60px;
+  }
+
+   #sid-{{section.id}} .timeline-event.right {
+    left: 50%;
+    text-align: left;
+    padding-left: 60px;
+  }
+
+  {% if section.settings.overlay_text == true %}
+    #sid-{{section.id}} .image_container {
+      width: 100%;
+      display: flex;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    #sid-{{section.id}} .image_container img{
+      object-fit: cover;
+    }
+    #sid-{{section.id}} .time-line-event *,
+    #sid-{{section.id}} .time-line-year * {
+      color: #ffffff !important;
+    }
+    #sid-{{section.id}} .time-line-year * {
+      font-size: calc({{ section.settings.timeline-heading-font-size }}px + 15px) !important;
+    }
+    #sid-{{section.id}} .time-line-event *{
+      font-size: calc({{ section.settings.event_font_size }}px + 10px) !important;
+      line-height: 1.4;
+    }
+    #sid-{{section.id}} .timeline-event.visible{
+      display: flex;
+    }
+    #sid-{{section.id}} .timeline-event.visible.left{
+      justify-content: end;
+    }
+    #sid-{{section.id}} .timeline-event.visible.right{
+      justify-content: start;
+    }
+    
+  {% endif %}
+  #sid-{{section.id}} .event-card {
+    display: grid;
+    {% if section.settings.overlay_text == true %}
+      grid-template-columns: 1fr;
+      height: {{ section.settings.overlay_card_height }}px;
+      width: {{ section.settings.overlay_card_width }}px;
+    {% else %}
+      grid-template-columns: {{ section.settings.card_images_width }}px 1fr;
+    {% endif %}
+    gap: 15px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+  }
+
+   #sid-{{section.id}} .timeline-event::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: {{section.settings.timeline-dot-color}};
+    border: 3px solid white;
+    border-radius: 50%;
+    top: 30px;
+    z-index: 2;
+  }
+
+   #sid-{{section.id}} .timeline-event.left::after {
+    right: -10px;
+  }
+
+   #sid-{{section.id}} .timeline-event.right::after {
+    left: -10px;
+  }
+
+   #sid-{{section.id}} .timeline-event.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+   #sid-{{section.id}} .time-line-event *{
+   margin:0px;
+    font-size: {{ section.settings.event_font_size }}px;
+    font-weight: {{ section.settings.event_font_weight }};
+    color: {{ section.settings.event_color }};
+
+    text-transform: {{ section.settings.event_text_transform }};
+  }
+   #sid-{{section.id}} .time-line-year *{
+    font-size: {{ section.settings.year_font_size }}px;
+    font-weight: {{ section.settings.year_font_weight }};
+    color: {{ section.settings.year_color }};
+    text-transform: {{ section.settings.year_text_transform }};
+    margin:0px;
+  }
+
+    {% for block in section.blocks %}
+   #sid-{{section.id}} .year-{{ block.id }} *{
+        text-align: {{ block.settings.year_text_align }} ;
+      }
+   #sid-{{section.id}} .time-line-desc-{{ block.id }} * {
+     text-align: {{ block.settings.event_text_align }};
+     }
+   #sid-{{section.id}} .time-line-event-card-{{ block_id }} {
+       background:{{ block.settings.card-bg-color}};
+     }
+    {% endfor %}
+
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+   #sid-{{ section.id }} .timeline-heading *{
+      font-size: {{ section.settings.timeline-heading-font-size-mb }}px;
+      margin-bottom: 30px;
+    }
+   #sid-{{section.id}} .timeline-container::after {
+
+      left: 31px;
+    }
+
+   #sid-{{section.id}} .timeline-event {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+      margin-bottom: 40px;
+    }
+
+   #sid-{{section.id}} .timeline-event.left,
+   #sid-{{section.id}} .timeline-event.right {
+      left: 0;
+      text-align: left;
+      padding-right: 25px;
+      padding-left: 70px;
+    }
+
+   #sid-{{section.id}} .timeline-event::after {
+      left: 20px;
+      right: auto;
+    }
+
+    #sid-{{section.id}} .timeline-event.left::after,
+    #sid-{{section.id}} .timeline-event.right::after {
+      left: 20px;
+      right: auto;
+    }
+  }
+
+  @media screen and (max-width:425px) {
+   #sid-{{section.id}} .timeline-container {
+      padding: 30px 10px;
+    }
+
+   #sid-{{section.id}} .timeline-event {
+      padding-left: 50px;
+      padding-right: 15px;
+      margin-bottom: 30px;
+    }
+
+   #sid-{{section.id}} .timeline-event.left,
+   #sid-{{section.id}} .timeline-event.right {
+      padding-left: 50px;
+      padding-right: 15px;
+    }
+
+   #sid-{{section.id}} .timeline-event::after {
+      width: 16px;
+      height: 16px;
+      top: 25px;
+      left: 12px;
+    }
+
+   #sid-{{section.id}} .event-card {
+      padding: 15px;
+    }
+
+   #sid-{{section.id}} .time-line-event *{
+
+    font-size: {{ section.settings.event_font_size_mb }}px;
+      margin-bottom: 5px;
+    }
+
+   #sid-{{section.id}} .time-line-year *{
+    font-size: {{ section.settings.year_font_size_mb }}px;{
+
+    }
+  }
+   @media only screen and (max-width: 320px){
+   #sid-{{section.id}} .timeline-heading *{
+      font-size:25px;
+    }
+    }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const events = document.querySelectorAll('.timeline-event');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    events.forEach((event) => observer.observe(event));
+
+    // Improved resize handler with debounce
+    let resizeTimer;
+    function handleResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        if (window.innerWidth <= 768) {
+          document.querySelectorAll('.timeline-event').forEach((event) => {
+            event.classList.remove('left', 'right');
+          });
+        } else {
+          document.querySelectorAll('.timeline-event').forEach((event) => {
+            const originalAlignment = event.dataset.alignment;
+            event.classList.remove('left', 'right');
+            event.classList.add(originalAlignment);
+          });
+        }
+      }, 250);
+    }
+
+    // Initial check
+    handleResize();
+
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+  });
+</script>
