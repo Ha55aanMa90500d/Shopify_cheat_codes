@@ -1,0 +1,642 @@
+<!-- Section File Name: Filename.liquid -->
+<!-- Solutions Multi Columns: Solutions Multi Columns -->
+<!-- Presets Name: Solutions Multi Columns -->
+
+{% style %}
+  #sid-{{section.id}} .main_container{
+    width: 100%;
+    position: relative;
+    {% if section.settings.bg_image %}
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url('{{ section.settings.bg_image | img_url: 'master' }}');
+    {% else %}
+        background-color: {{section.settings.bg_color}};
+    {% endif %}
+    {% if section.settings.bg_height_check == true %}
+        {% if section.settings.show_height == true %}
+            height: {{section.settings.bgs_height}}px;
+        {% else %}
+            padding-bottom: calc(100% / ({{section.settings.bg_width}} / {{section.settings.bg_height}}));
+        {% endif %}
+    {% endif %}
+  }
+  #sid-{{section.id}} .content_wrapper{
+    {% if section.settings.full_width == false %}
+        max-width: {{section.settings.maxWidth}}px;
+    {% endif %}
+    width: 100%;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+  }
+  #sid-{{section.id}} {
+
+  }
+  #sid-{{section.id}} .grid_container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+  }
+
+  #sid-{{section.id}} .link_box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 16px;
+    border-bottom: 1px solid rgb(215,215,215);
+    text-decoration: none;
+    font-size: {{ section.settings.page_link_font_size }}px;
+    font-weight: {{ section.settings.page_link_font_weight }};
+    letter-spacing: 0;
+    line-height: normal;
+    color: {{ section.settings.page_link_color }};
+    text-align: {{ section.settings.page_link_text_align }};
+    text-transform: {{ section.settings.page_link_text_transform }};
+  }
+  #sid-{{section.id}} .link_box img{
+    width: 100%;
+    max-width: 30px;
+    height: 100%;
+    max-height: 18px;
+    object-fit: cover;
+  }
+  #sid-{{section.id}} .images_container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    max-height: 358px;
+  }
+  #sid-{{section.id}} .images_container .image_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s linear;
+  }
+  #sid-{{section.id}} .images_container .image_wrapper:first-child {
+    opacity: 1;
+    visibility: visible;
+  }
+  #sid-{{section.id}} .section_heading {
+    color:{{ section.settings.section_heading_color }};
+    font-size:{{ section.settings.section_heading_font_size }}px;
+    font-weight:{{ section.settings.section_heading_font_weight }};
+    padding-bottom:{{ section.settings.section_heading_padding_bottom }}px;
+    text-align:{{ section.settings.section_heading_text_alignment }};
+    text-transform:{{ section.settings.section_heading_text_transform }};
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  @media only screen and (max-width: 990px){
+    #sid-{{section.id}} .content_wrapper{
+        max-width: {{ section.settings.maxWidth_tab }}px;
+        padding: {{ section.settings.padding_top_mb }}px {{ section.settings.padding_right_mb }}px {{ section.settings.padding_bottom_mb }}px {{ section.settings.padding_left_mb }}px;
+    }
+    #sid-{{section.id}} .grid_container{
+        grid-template-columns: repeat(1,1fr);
+        gap: 30px;
+    }
+    #sid-{{section.id}} .images_container{
+        height: 428px;
+        max-height: 428px;
+        margin: 0 auto;
+    }
+  }
+  @media only screen and (max-width: 768px){
+    #sid-{{section.id}} .content_wrapper{
+      padding: {{ section.settings.padding_top_mb }}px {{ section.settings.padding_right_mb }}px {{ section.settings.padding_bottom_mb }}px {{ section.settings.padding_left_mb }}px;
+    }
+    #sid-{{section.id}} .main_container{
+      {% if section.settings.bg_image_mb != blank %}
+        background-image: url('{{ section.settings.bg_image_mb | image_url }}');
+        {% if section.settings.bg_height_check == true %}
+            {% if section.settings.show_height_mb == true %}
+                height: {{section.settings.bgs_height_mb}}px;
+            {% else %}
+                padding-bottom: calc(100% / ({{section.settings.bg_width_mb}} / {{section.settings.bg_height_mb}}));
+                height: 0;
+            {% endif %}
+        {% endif %}
+      {% endif %}
+    }
+    #sid-{{section.id}} .section_heading{
+      font-size:{{ section.settings.section_heading_font_size_mb }}px;
+    }
+    #sid-{{section.id}} .images_container{
+      height: 340px;
+      max-height: 340px;
+    }
+    #sid-{{section.id}} .link_box{
+        font-size: {{ section.settings.page_link_font_size_mb }}px;
+    }
+    #sid-{{section.id}} .link_box img{
+        max-width: 24px;
+    }
+  }
+{% endstyle %}
+
+<div id="sid-{{ section.id }}">
+  <div class="main_container">
+    <div class="content_wrapper">
+      <h2 class="section_heading">{{ section.settings.section_heading }}</h2>
+      <div class="grid_container">
+        <div class="link_container">
+          {% for block in section.blocks %}
+            {% assign page = block.settings.page %}
+            <a class="link_box" href="{{ page.url }}" data-image="{{ page.title }}">
+              {{ page.title }}
+              {% if section.settings.links_arrow != blank %}
+                <img src="{{ section.settings.links_arrow | image_url }}" width="100%" height="100%" loading="lazy">
+              {% else %}
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0929/7156/5345/files/right-arrow_2.png?v=1756881194"
+                  width="100%"
+                  height="100%"
+                  loading="lazy"
+                >
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+        <div class="images_container">
+          {% for block in section.blocks %}
+            {% assign page = block.settings.page %}
+            <div class="image_wrapper" data-image="{{ page.title }}">
+              {% if page.metafields.custom.solution_image != blank %}
+                <img
+                  src="{{ page.metafields.custom.solution_image | image_url }}"
+                  width="100%"
+                  height="100%"
+                  loading="lazy"
+                >
+              {% elsif block.settings.page_image != blank %}
+                <img src="{{ block.settings.page_image | image_url }}" width="100%" height="100%" loading="lazy">
+              {% else %}
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0929/7156/5345/files/solution_image.png?v=1756880193"
+                  width="100%"
+                  height="100%"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const linkBoxes = document.querySelectorAll('.link_box');
+    const imageWrappers = document.querySelectorAll('.image_wrapper');
+
+    linkBoxes.forEach((linkBox) => {
+      linkBox.addEventListener('mouseenter', (e) => {
+        const targetImage = linkBox.dataset.image;
+
+        linkBoxes.forEach((box) => {
+          box.style.background = 'transparent';
+          box.style.color = '{{ section.settings.page_link_color }}';
+          box.querySelector('img').style.filter = "invert(0)";
+        });
+        linkBox.style.background = '#1079cbe6';
+        linkBox.style.color = '#ffffff';
+        linkBox.querySelector('img').style.filter = "invert(1)";
+
+        imageWrappers.forEach((image) => {
+          if (image.dataset.image === targetImage) {
+            image.style.opacity = '1';
+            image.style.visibility = 'visible';
+          } else {
+            image.style.opacity = '0';
+            image.style.visibility = 'hidden';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Solutions Multi Columns",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Page Full Width",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "maxWidth",
+      "label": "Page Width",
+      "default": 1440
+    },
+    {
+      "type": "number",
+      "id": "maxWidth_tab",
+      "label": "Page Width Tab",
+      "default": 728
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mb",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "header",
+      "content": "Background Image Size Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "bg_height_check",
+      "label": "Show Image With Dimension",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Image Dimension"
+    },
+    {
+      "type": "number",
+      "id": "bg_width",
+      "label": "Width",
+      "default": 2560
+    },
+    {
+      "type": "number",
+      "id": "bg_height",
+      "label": "Height",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Specific Height"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_height",
+      "label": "Show Specific Height",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "bgs_height",
+      "label": "Height",
+      "default": 800
+    },
+    {
+      "type": "header",
+      "content": "Image Dimension Mobile"
+    },
+    {
+      "type": "number",
+      "id": "bg_width_mb",
+      "label": "Width",
+      "default": 780
+    },
+    {
+      "type": "number",
+      "id": "bg_height_mb",
+      "label": "Height",
+      "default": 2280
+    },
+    {
+      "type": "header",
+      "content": "Specific Height Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_height_mb",
+      "label": "Show Specific Height",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "bgs_height_mb",
+      "label": "Height",
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "heading",
+      "default": "BROAD PRODUCT PORTFOLIO FOR DATA CENTERS"
+    },
+    {
+      "type": "color",
+      "id": "section_heading_color",
+      "label": "Heading Color",
+      "default": "#3E3E3E"
+    },
+    {
+      "type": "range",
+      "id": "section_heading_font_size",
+      "label": "Heading Font Size",
+      "min": 0,
+      "max": 100,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "section_heading_font_size_mb",
+      "label": "Heading Font Size Mobile",
+      "min": 0,
+      "max": 100,
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "section_heading_font_weight",
+      "label": "Heading Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "section_heading_padding_bottom",
+      "label": "Heading Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "section_heading_text_alignment",
+      "label": "Heading Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "justify",
+          "label": "Justify"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "section_heading_text_transform",
+      "label": "Heading Text Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "blocks settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "links_arrow",
+      "label": "Link Arrow"
+    },
+    {
+      "type": "color",
+      "id": "page_link_color",
+      "label": "Links Color",
+      "default": "#3E3E3E"
+    },
+    {
+      "type": "range",
+      "id": "page_link_font_size",
+      "label": "Links Font Size",
+      "min": 0,
+      "max": 100,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "page_link_font_size_mb",
+      "label": "Links Font Size Mobile",
+      "min": 0,
+      "max": 100,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "page_link_font_weight",
+      "label": "Links Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "page_link_text_align",
+      "label": "Links Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "justify",
+          "label": "Justify"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "page_link_text_transform",
+      "label": "Links Text Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "capitalize"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "page",
+      "name": "Page",
+      "settings": [
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Select Page"
+        },
+        {
+          "type": "image_picker",
+          "id": "page_image",
+          "label": "Page Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Solutions Multi Columns"
+    }
+  ]
+}
+{% endschema %}
