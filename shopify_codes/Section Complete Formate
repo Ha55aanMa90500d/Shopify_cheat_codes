@@ -194,7 +194,7 @@
       "type": "checkbox",
       "id": "bg_height_check",
       "label": "Show Image With Dimension",
-      "default": true
+      "default": false
     },
     {
       "type": "header",
