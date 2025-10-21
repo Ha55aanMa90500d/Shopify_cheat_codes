@@ -1,0 +1,11 @@
+const target = document.querySelector('#CartDrawer');
+
+if (target) {
+  const observer = new MutationObserver((mutations) => {
+    console.log('Cart changed!');
+    // yahan tum custom logic chala sakte ho
+    // jaise cart subtotal update, upsell refresh, etc.
+  });
+
+  observer.observe(target, { childList: true, subtree: true });
+}
