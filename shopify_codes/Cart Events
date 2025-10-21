@@ -1,0 +1,5 @@
+document.addEventListener('cart-drawer:open', () => console.log('Cart Drawer Opened'));
+document.addEventListener('cart-drawer:close', () => console.log('Cart Drawer Closed'));
+document.addEventListener('cart-drawer:toggle', () => console.log('Cart Drawer Toggled'));
+document.addEventListener('cart-drawer:updated', () => console.log('Cart Drawer Updated'));
+document.addEventListener('cart-drawer:error', (e) => console.error('Cart Drawer Error:', e.detail));
