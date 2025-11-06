@@ -1,0 +1,19 @@
+try {
+  // Fetch the rendered HTML of the your section
+  const res = await fetch('/products/custom-stickers?section_id=template--26709815099738__main'); // yaha pe url or waha se lene wale section ki ID aegi.
+  const html = await res.text();
+
+  // Parse and extract only the section’s HTML (so we don’t inject the entire page)
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+
+  const section = tempDiv.querySelector('#shopify-section-template--26709815099738__main'); // yaha pe ID aegi section ki.
+
+  if (section) {
+    document.querySelector('#sid-{{ section.id }} .content_wrapper').innerHTML = section.innerHTML;
+  } else {
+    console.warn('Main product section not found in fetched HTML.');
+  }
+} catch (error) {
+  console.error('Error loading product section:', error);
+}
